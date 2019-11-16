@@ -2,11 +2,11 @@ import React, { Component } from "react";
 
 import { StyleSheet, View, Text } from "react-native";
 
-export default class Profile extends Component {
+export default class MessageScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Profile Screen</Text>
+        <Text>Message Screen</Text>
       </View>
     );
   }

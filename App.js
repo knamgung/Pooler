@@ -3,10 +3,10 @@ import { createBottomTabNavigator } from "react-navigation-tabs";
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { Ionicons, FontAwesome, MaterialIcons } from "@expo/vector-icons";
-import HomeScreen from "./src/screens/HomeScreen.js";
-import MessageScreen from "./src/screens/MessageScreen.js";
-import ProfileScreen from "./src/screens/ProfileScreen.js";
-import SearchScreen from "./src/screens/SearchScreen.js";
+import HomeScreen from "./src/screens/Home/HomeScreen.js";
+import MessageScreen from "./src/screens/Message/MessageScreen.js";
+import ProfileScreen from "./src/screens/Profile/ProfileScreen.js";
+import SearchScreen from "./src/screens/Search/SearchScreen.js";
 
 const navigator = createBottomTabNavigator(
   {

@@ -5,29 +5,35 @@ import {
   Switch,
   Image,
   FlatList,
-  TextInput
+  TextInput,
+  TouchableHighlight
 } from "react-native";
 import React, { Component } from "react";
 import { Ionicons, FontAwesome } from "@expo/vector-icons";
 import * as Font from "expo-font";
 import { ScrollView } from "react-native-gesture-handler";
+import Svg, { Path } from "react-native-svg";
+import { createStackNavigator, createAppContainer } from "react-navigation";
+import SearchRideScreen from "./SearchRideScreen.js";
+import RequestPoolScreen from "./RequestPoolScreen.js";
 
-export default class Search extends Component {
-  state = { input: true, fontLoaded: false };
+class SearchScreen extends Component {
+  state = { input: false, fontLoaded: false };
 
   async componentDidMount() {
     await Font.loadAsync({
-      gothic: require("../../assets/fonts/gothic.ttf"),
-      gothicBold: require("../../assets/fonts/gothicBold.ttf"),
-      gothicBoldItalic: require("../../assets/fonts/gothicBoldItalic.ttf"),
-      gothicItalic: require("../../assets/fonts/gothicItalic.ttf")
+      gothic: require("../../../assets/fonts/gothic.ttf"),
+      gothicBold: require("../../../assets/fonts/gothicBold.ttf"),
+      gothicBoldItalic: require("../../../assets/fonts/gothicBoldItalic.ttf"),
+      gothicItalic: require("../../../assets/fonts/gothicItalic.ttf")
     });
 
     this.setState({ fontLoaded: true });
   }
   render() {
-    const { fontLoaded } = this.state;
-    if (fontLoaded) {
+    const { navigation } = this.props;
+    const { fontLoaded, input } = this.state;
+    if (fontLoaded && !input) {
       return (
         <View name="body" style={styles.container}>
           <View style={styles.container} name="header">
@@ -55,7 +61,7 @@ export default class Search extends Component {
             style={styles.scrollView}
             contentContainerStyle={{ paddingTop: 10, paddingBottom: 200 }}
           >
-            <RideCard></RideCard>
+            <RideCard navigation={navigation}></RideCard>
             <RideCard></RideCard>
             <RideCard></RideCard>
             <RideCard></RideCard>
@@ -63,11 +69,21 @@ export default class Search extends Component {
           </ScrollView>
         </View>
       );
+    } else if (fontLoaded && input) {
+      return <RequestPoolScreen></RequestPoolScreen>;
     } else {
       return <Text>Loading</Text>;
     }
   }
 }
+const SvgComponent = props => (
+  <Svg viewBox="0 0 32 156" {...props}>
+    <Path
+      fill="#c2c2c2"
+      d="M17.3 109.1V28.3c7-.8 12.5-6.7 12.5-14 0-7.8-6.3-14.1-14-14.1s-14 6.3-14 14.1c0 7.2 5.5 13.2 12.5 14v80.8c-8.1.8-14.5 7.6-14.5 16 0 3.6 2.1 9 6.6 17 3.1 5.5 6.1 10.1 6.2 10.3l2.2 3.3c.2.3.6.5 1 .5s.8-.2 1-.5l2.2-3.3c.1-.2 3.1-4.8 6.2-10.3 4.5-8 6.6-13.5 6.6-17 0-8.4-6.4-15.2-14.5-16zM5.8 14.4c0-5.5 4.5-10.1 10-10.1s10 4.5 10 10.1c0 5.5-4.5 10.1-10 10.1s-10-4.6-10-10.1zm10 119.5c-4.9 0-8.9-4-8.9-8.9s4-8.9 8.9-8.9 8.9 4 8.9 8.9-4 8.9-8.9 8.9z"
+    />
+  </Svg>
+);
 
 const RideInfo = () => {
   return (
@@ -97,6 +113,21 @@ const RideInfo = () => {
   );
 };
 
+const SearchNavigator = createStackNavigator(
+  {
+    Search: {
+      screen: SearchScreen,
+      navigationOptions: ({ navigation }) => ({
+        headerShown: false
+      })
+    },
+    SearchRide: SearchRideScreen
+  },
+  {
+    initialRouteName: "Search",
+    headerMode: "none"
+  }
+);
 const RideProfileInfo = () => {
   return (
     <View style={styles.profile}>
@@ -113,12 +144,13 @@ const RideProfileInfo = () => {
           <FlatList
             horizontal
             style={{ marginRight: 4 }}
+            keyExtractor={(item, index) => item.key}
             data={[
-              { value: "star" },
-              { value: "star" },
-              { value: "star" },
-              { value: "star" },
-              { value: "star" }
+              { value: "star", key: "1" },
+              { value: "star", key: "2" },
+              { value: "star", key: "3" },
+              { value: "star", key: "4" },
+              { value: "star", key: "5" }
             ]}
             renderItem={({ item }) => (
               <FontAwesome
@@ -156,18 +188,32 @@ const LocationInfo = ({ location, street, region }) => {
   );
 };
 
-const RideCard = () => {
+const RideCard = ({ navigation }) => {
   return (
-    <View style={styles.cardContent}>
-      <View style={styles.test2}>
-        <LocationInfo></LocationInfo>
-        <LocationInfo></LocationInfo>
-        <RideInfo></RideInfo>
+    <TouchableHighlight
+      activeOpacity={0.5}
+      underlayColor="white"
+      onPress={() => {
+        navigation.navigate("SearchRide", {});
+      }}
+    >
+      <View style={styles.cardContent} onPress={() => {}}>
+        <View>
+          <View style={styles.test2}>
+            <SvgComponent style={styles.destinSVG}> </SvgComponent>
+            <View>
+              <LocationInfo></LocationInfo>
+              <LocationInfo></LocationInfo>
+            </View>
+          </View>
+          <RideInfo></RideInfo>
+        </View>
+
+        <View style={styles.test3}>
+          <RideProfileInfo></RideProfileInfo>
+        </View>
       </View>
-      <View style={styles.test3}>
-        <RideProfileInfo></RideProfileInfo>
-      </View>
-    </View>
+    </TouchableHighlight>
   );
 };
 
@@ -175,7 +221,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
     fontFamily: "gothicBold",
-    marginTop: 25
+    marginTop: 30
   },
   existCar: {
     flexDirection: "row",
@@ -197,7 +243,7 @@ const styles = StyleSheet.create({
   test: {
     flexDirection: "row"
   },
-  test2: {},
+  test2: { flexDirection: "row", alignItems: "center" },
   cardContent: {
     justifyContent: "space-between",
     flexDirection: "row",
@@ -307,5 +353,8 @@ const styles = StyleSheet.create({
   locationInputs: {
     height: 70,
     justifyContent: "center"
-  }
+  },
+  destinSVG: { width: 40, height: 90 }
 });
+
+export default createAppContainer(SearchNavigator);
