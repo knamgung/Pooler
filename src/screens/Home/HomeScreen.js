@@ -5,17 +5,30 @@ import {
   Switch,
   Image,
   FlatList,
-  TextInput
+  TextInput,
+  RefreshControl,
+  ActivityIndicator,
+  TouchableHighlight
 } from "react-native";
 import React, { Component } from "react";
 import { Ionicons, FontAwesome, MaterialIcons } from "@expo/vector-icons";
 import * as Font from "expo-font";
 import Svg, { Path } from "react-native-svg";
-
+import { createStackNavigator, createAppContainer } from "react-navigation";
 import { ScrollView } from "react-native-gesture-handler";
+import MapView, { Marker } from "react-native-maps";
+import HomeCard from "./Component/HomeCard.js";
+import RideDetail from "../Search/RideDetail.js";
+const GOOGLE_APIKEY = "AIzaSyBENXLjKiK-C2Q1Y0K4uKDB579jkP1-nbg";
+import SearchRideScreen from "../Search/SearchRideScreen.js";
+const uri =
+  "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
 
-export default class HomeScreen extends Component {
-  state = { input: true, fontLoaded: false };
+import json from "../../../data.json";
+const ride = json.rides;
+
+class HomeScreen extends Component {
+  state = { input: true, fontLoaded: false, rides: ride };
 
   async componentDidMount() {
     await Font.loadAsync({
@@ -25,33 +38,143 @@ export default class HomeScreen extends Component {
       gothicItalic: require("../../../assets/fonts/gothicItalic.ttf")
     });
 
-    this.setState({ fontLoaded: true });
+    setTimeout(() => {
+      this.setState({ fontLoaded: true });
+    }, 1000);
   }
   render() {
-    const { fontLoaded } = this.state;
+    const { fontLoaded, rides } = this.state;
+    const { navigation } = this.props;
+    console.log("HOME DATA", this.props.navigation.state.params);
+
+    let latlngLoo = {
+      latitude: 43.4643,
+      longitude: -80.5204,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421
+    };
+    let latlngStrat = {
+      latitude: 43.3682,
+      longitude: -80.9821,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421
+    };
+
     if (fontLoaded) {
       return (
-        <ScrollView
-          contentContainerStyle={{ paddingBottom: 50 }}
-          style={styles.rideScroll}
-        >
-          <RideCard></RideCard>
-          <RideCard></RideCard>
-          <RideCard></RideCard>
-        </ScrollView>
+        <View style={{}}>
+          <Text
+            style={{
+              fontFamily: "gothicBold",
+              fontSize: 24,
+
+              paddingHorizontal: 20,
+              paddingTop: 50,
+              paddingVertical: 10,
+              color: "#55d88a",
+              backgroundColor: "white",
+              elevation: 4
+            }}
+          >
+            Upcoming Rides
+          </Text>
+          <ScrollView
+            contentContainerStyle={{ paddingBottom: 50 }}
+            style={styles.rideScroll}
+          >
+            <MapView
+              style={{
+                width: "100%",
+                height: 450
+              }}
+              ref={ref => {
+                this.mapRef = ref;
+              }}
+              onLayout={() =>
+                this.mapRef.fitToCoordinates([latlngLoo, latlngStrat], {
+                  edgePadding: { top: 10, right: 50, bottom: 10, left: 50 },
+                  animated: true
+                })
+              }
+              region={{
+                latitude: 43.4643,
+                longitude: -80.5204,
+                latitudeDelta: 0.0922,
+                longitudeDelta: 0.0421
+              }}
+            >
+              <Marker
+                coordinate={latlngLoo}
+                pinColor="#55d88a"
+                anchor={{ x: 0.5, y: 0.5 }}
+              ></Marker>
+              <Marker
+                pinColor="#03aa47"
+                coordinate={latlngStrat}
+                anchor={{ x: 0.5, y: 0.5 }}
+              ></Marker>
+            </MapView>
+            <HomeCard data={rides[0]}></HomeCard>
+            <View style={{ marginTop: 30 }}>
+              <FlatList
+                data={rides}
+                style={{ marginBottom: 50 }}
+                keyExtractor={(item, index) => index}
+                renderItem={({ item }) => {
+                  return (
+                    <TouchableHighlight
+                      activeOpacity={0.5}
+                      underlayColor="white"
+                      onPress={() => {
+                        navigation.navigate("HomeRide", {
+                          data: item,
+                          navigation: navigation
+                        });
+                      }}
+                    >
+                      <RideCard data={item}></RideCard>
+                    </TouchableHighlight>
+                  );
+                }}
+              ></FlatList>
+            </View>
+          </ScrollView>
+        </View>
       );
     } else {
-      return <Text>Loading</Text>;
+      return (
+        <View
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        >
+          <ActivityIndicator size={100} color="#56d88a" />
+        </View>
+      );
     }
   }
 }
 
+const HomeNavigator = createStackNavigator(
+  {
+    Home: {
+      screen: HomeScreen,
+      navigationOptions: ({ navigation }) => ({
+        headerShown: false
+      })
+    },
+    HomeRide: SearchRideScreen,
+    HomeDetail: RideDetail
+  },
+  {
+    initialRouteName: "Home",
+    headerMode: "none"
+  }
+);
 const LocationInfo = ({ location, street, region }) => {
   return (
     <View>
-      <Text style={styles.locationText}>Alexandra Theatre</Text>
-      <Text style={styles.streetText}>1 Navato St.</Text>
-      <Text style={styles.streetText}>Irvine, CA</Text>
+      <Text style={styles.locationText}>{location}</Text>
+      <Text style={styles.streetText}>{street}</Text>
+      <Text style={styles.streetText}>{region}</Text>
     </View>
   );
 };
@@ -65,12 +188,16 @@ const SvgComponent = props => (
   </Svg>
 );
 
-const RideInfo = () => {
+const RideInfo = ({ depart }) => {
+  const { timeStart, timeStartEnd, walkTime } = depart;
   return (
     <View>
       <View style={styles.departBlock}>
         <Text style={styles.subhead}>Depart</Text>
-        <Text style={styles.walkDepart}>7:30 am -{"\n"}7:45 am</Text>
+        <Text style={styles.walkDepart}>
+          {timeStart}-{"\n"}
+          {timeStartEnd}
+        </Text>
       </View>
       <View style={styles.walkBlock}>
         <Ionicons
@@ -81,96 +208,76 @@ const RideInfo = () => {
         ></Ionicons>
         <View>
           <Text style={styles.subhead}>Walking</Text>
-          <Text style={styles.timeWalk}>2 min</Text>
+          <Text style={styles.timeWalk}>{walkTime}</Text>
         </View>
       </View>
     </View>
   );
 };
 
-const RideCard = () => {
+const RideCard = ({ data }) => {
+  const { startLocation, carpool, endLocation, driver, depart } = data;
+
   return (
     <View style={styles.rideCard}>
-      <Text style={styles.date}>Today | November 10</Text>
+      <Text style={styles.date}>{depart.date}</Text>
       <View style={styles.rideContent}>
         <View style={styles.rideLocation}>
           <View style={styles.endStartView}>
             <SvgComponent style={styles.destinSVG}></SvgComponent>
             <View style={{ flexDirection: "column" }}>
-              <LocationInfo></LocationInfo>
-              <LocationInfo></LocationInfo>
+              <LocationInfo
+                location={startLocation.place}
+                street={startLocation.street}
+                region={startLocation.region}
+              ></LocationInfo>
+              <LocationInfo
+                location={endLocation.place}
+                street={endLocation.street}
+                region={endLocation.region}
+              ></LocationInfo>
             </View>
           </View>
 
-          <RideInfo></RideInfo>
+          <RideInfo depart={depart}></RideInfo>
         </View>
         <View style={styles.userInfo}>
-          <Driver></Driver>
-          <CarpoolMates></CarpoolMates>
+          <Driver driver={driver}></Driver>
+          <CarpoolMates carpool={carpool}></CarpoolMates>
         </View>
       </View>
     </View>
   );
 };
 
-const Driver = () => {
+const Driver = ({ driver }) => {
+  const { displayName, profilePic } = driver;
   return (
     <View style={styles.driver}>
       <Image
         style={{ width: 50, height: 50, borderRadius: 100, marginLeft: 25 }}
         source={{
-          uri:
-            "https://scontent.fyyz1-1.fna.fbcdn.net/v/t31.0-8/p960x960/21316104_1817590971602155_8722311024261381719_o.jpg?_nc_cat=101&_nc_oc=AQnJA0X92TvJ9LHSDLiB_4k8w7gbzJq3w1DBUrXDTfypwl-rdCkFqiuMze1G3nPer8654wkXuSlc069jn0eKdIWK&_nc_ht=scontent.fyyz1-1.fna&oh=b4e3e66c488233a4f83eaf106c8e06da&oe=5E8CFC9A"
+          uri: profilePic
         }}
       ></Image>
       <View style={styles.driverDetail}>
         <Text style={styles.driverSub}>Driver</Text>
-        <Text style={styles.driverGreen}>Alexandra</Text>
+        <Text style={styles.driverGreen}>{displayName}</Text>
       </View>
       <View></View>
     </View>
   );
 };
 
-const CarpoolMates = () => {
+const CarpoolMates = ({ carpool }) => {
   return (
     <View style={styles.carpool}>
       <Text style={styles.carpoolHead}>Carpool{"\n"}Mates</Text>
       <FlatList
         horizontal
         scrollEnabled
-        data={[
-          {
-            value:
-              "https://scontent.fyyz1-1.fna.fbcdn.net/v/t31.0-8/p960x960/21316104_1817590971602155_8722311024261381719_o.jpg?_nc_cat=101&_nc_oc=AQnJA0X92TvJ9LHSDLiB_4k8w7gbzJq3w1DBUrXDTfypwl-rdCkFqiuMze1G3nPer8654wkXuSlc069jn0eKdIWK&_nc_ht=scontent.fyyz1-1.fna&oh=b4e3e66c488233a4f83eaf106c8e06da&oe=5E8CFC9A",
-            key: "1"
-          },
-          {
-            value:
-              "https://scontent.fyyz1-1.fna.fbcdn.net/v/t31.0-8/p960x960/21316104_1817590971602155_8722311024261381719_o.jpg?_nc_cat=101&_nc_oc=AQnJA0X92TvJ9LHSDLiB_4k8w7gbzJq3w1DBUrXDTfypwl-rdCkFqiuMze1G3nPer8654wkXuSlc069jn0eKdIWK&_nc_ht=scontent.fyyz1-1.fna&oh=b4e3e66c488233a4f83eaf106c8e06da&oe=5E8CFC9A",
-            key: "2"
-          },
-          {
-            value:
-              "https://scontent.fyyz1-1.fna.fbcdn.net/v/t31.0-8/p960x960/21316104_1817590971602155_8722311024261381719_o.jpg?_nc_cat=101&_nc_oc=AQnJA0X92TvJ9LHSDLiB_4k8w7gbzJq3w1DBUrXDTfypwl-rdCkFqiuMze1G3nPer8654wkXuSlc069jn0eKdIWK&_nc_ht=scontent.fyyz1-1.fna&oh=b4e3e66c488233a4f83eaf106c8e06da&oe=5E8CFC9A",
-            key: "3"
-          },
-          {
-            value:
-              "https://scontent.fyyz1-1.fna.fbcdn.net/v/t31.0-8/p960x960/21316104_1817590971602155_8722311024261381719_o.jpg?_nc_cat=101&_nc_oc=AQnJA0X92TvJ9LHSDLiB_4k8w7gbzJq3w1DBUrXDTfypwl-rdCkFqiuMze1G3nPer8654wkXuSlc069jn0eKdIWK&_nc_ht=scontent.fyyz1-1.fna&oh=b4e3e66c488233a4f83eaf106c8e06da&oe=5E8CFC9A",
-            key: "4"
-          },
-          {
-            value:
-              "https://scontent.fyyz1-1.fna.fbcdn.net/v/t31.0-8/p960x960/21316104_1817590971602155_8722311024261381719_o.jpg?_nc_cat=101&_nc_oc=AQnJA0X92TvJ9LHSDLiB_4k8w7gbzJq3w1DBUrXDTfypwl-rdCkFqiuMze1G3nPer8654wkXuSlc069jn0eKdIWK&_nc_ht=scontent.fyyz1-1.fna&oh=b4e3e66c488233a4f83eaf106c8e06da&oe=5E8CFC9A",
-            key: "5"
-          },
-          {
-            value:
-              "https://scontent.fyyz1-1.fna.fbcdn.net/v/t31.0-8/p960x960/21316104_1817590971602155_8722311024261381719_o.jpg?_nc_cat=101&_nc_oc=AQnJA0X92TvJ9LHSDLiB_4k8w7gbzJq3w1DBUrXDTfypwl-rdCkFqiuMze1G3nPer8654wkXuSlc069jn0eKdIWK&_nc_ht=scontent.fyyz1-1.fna&oh=b4e3e66c488233a4f83eaf106c8e06da&oe=5E8CFC9A",
-            key: "6"
-          }
-        ]}
+        keyExtractor={(item, index) => index}
+        data={carpool}
         renderItem={({ item }) => (
           <Image
             style={{
@@ -179,7 +286,7 @@ const CarpoolMates = () => {
               borderRadius: 50,
               marginHorizontal: 4
             }}
-            source={{ uri: `${item.value}` }}
+            source={{ uri: item.profilePic }}
           ></Image>
         )}
       />
@@ -286,11 +393,9 @@ const styles = StyleSheet.create({
     borderTopColor: "black",
     paddingTop: 15,
     flexGrow: 1,
-    marginTop: 10,
-    elevation: 5
+    marginTop: 10
   },
   rideScroll: {
-    marginTop: 70,
     borderTopLeftRadius: 100,
     borderTopRightRadius: 100
   },
@@ -317,3 +422,5 @@ const styles = StyleSheet.create({
     alignItems: "center"
   }
 });
+
+export default createAppContainer(HomeNavigator);

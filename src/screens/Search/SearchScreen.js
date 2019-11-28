@@ -6,19 +6,30 @@ import {
   Image,
   FlatList,
   TextInput,
+  ActivityIndicator,
   TouchableHighlight
 } from "react-native";
 import React, { Component } from "react";
 import { Ionicons, FontAwesome } from "@expo/vector-icons";
 import * as Font from "expo-font";
 import { ScrollView } from "react-native-gesture-handler";
-import Svg, { Path } from "react-native-svg";
+import Svg, { Path, Circle } from "react-native-svg";
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import SearchRideScreen from "./SearchRideScreen.js";
 import RequestPoolScreen from "./RequestPoolScreen.js";
+import { mapView } from "react-native-maps";
+import SearchCard from "./Component/SearchCard";
+import RideDetail from "./RideDetail.js";
+import CreateRequest from "./CreateRequest.js";
+
+const uri =
+  "https://scontent.fyyz1-1.fna.fbcdn.net/v/t31.0-8/p960x960/21316104_1817590971602155_8722311024261381719_o.jpg?_nc_cat=101&_nc_oc=AQnJA0X92TvJ9LHSDLiB_4k8w7gbzJq3w1DBUrXDTfypwl-rdCkFqiuMze1G3nPer8654wkXuSlc069jn0eKdIWK&_nc_ht=scontent.fyyz1-1.fna&oh=b4e3e66c488233a4f83eaf106c8e06da&oe=5E8CFC9A";
+
+import json from "../../../data.json";
+const ride = json.available;
 
 class SearchScreen extends Component {
-  state = { input: false, fontLoaded: false };
+  state = { input: false, fontLoaded: false, rides: ride };
 
   async componentDidMount() {
     await Font.loadAsync({
@@ -32,7 +43,7 @@ class SearchScreen extends Component {
   }
   render() {
     const { navigation } = this.props;
-    const { fontLoaded, input } = this.state;
+    const { fontLoaded, input, rides } = this.state;
     if (fontLoaded && !input) {
       return (
         <View name="body" style={styles.container}>
@@ -61,18 +72,38 @@ class SearchScreen extends Component {
             style={styles.scrollView}
             contentContainerStyle={{ paddingTop: 10, paddingBottom: 200 }}
           >
-            <RideCard navigation={navigation}></RideCard>
-            <RideCard></RideCard>
-            <RideCard></RideCard>
-            <RideCard></RideCard>
-            <RideCard></RideCard>
+            <FlatList
+              data={rides}
+              renderItem={({ item }) => {
+                return (
+                  <TouchableHighlight
+                    activeOpacity={0.5}
+                    underlayColor="white"
+                    onPress={() => {
+                      navigation.navigate("SearchRide", {
+                        data: item,
+                        navigation: navigation
+                      });
+                    }}
+                  >
+                    <SearchCard data={item}></SearchCard>
+                  </TouchableHighlight>
+                );
+              }}
+            ></FlatList>
           </ScrollView>
         </View>
       );
     } else if (fontLoaded && input) {
-      return <RequestPoolScreen></RequestPoolScreen>;
+      return <RequestPoolScreen navigation={navigation}></RequestPoolScreen>;
     } else {
-      return <Text>Loading</Text>;
+      return (
+        <View
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        >
+          <ActivityIndicator size="large" color="#56d88a" />
+        </View>
+      );
     }
   }
 }
@@ -121,7 +152,9 @@ const SearchNavigator = createStackNavigator(
         headerShown: false
       })
     },
-    SearchRide: SearchRideScreen
+    SearchRide: SearchRideScreen,
+    SearchDetail: RideDetail,
+    CreateRequest: CreateRequest
   },
   {
     initialRouteName: "Search",
@@ -169,11 +202,28 @@ const RideProfileInfo = () => {
   );
 };
 
+const InputSVG = props => (
+  <Svg style={{ width: 50, height: 50 }} viewBox="0 0 27.3 77" {...props}>
+    <Path
+      fill="#c2c2c2"
+      d="M13.6 27.3C6.1 27.3 0 21.2 0 13.6 0 6.1 6.1 0 13.6 0s13.6 6.1 13.6 13.6c.1 7.6-6 13.7-13.6 13.7zm0-23.3C8.3 4 4 8.3 4 13.6s4.3 9.6 9.6 9.6 9.6-4.3 9.6-9.6C23.3 8.3 19 4 13.6 4z"
+    />
+    <Circle fill="#c2c2c2" cx={13.6} cy={65.4} r={11.6} />
+    <Path
+      fill="#c2c2c2"
+      d="M13.6 49c-1.4 0-2.5-1.1-2.5-2.5v-12c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5v12c0 1.4-1.1 2.5-2.5 2.5z"
+    />
+  </Svg>
+);
+
 const LocationInput = () => {
   return (
-    <View style={styles.locationInputs}>
-      <TextInput placeholder="Where From?"></TextInput>
-      <TextInput placeholder="Where To?"></TextInput>
+    <View style={{ flexDirection: "row", alignItems: "center" }}>
+      <InputSVG></InputSVG>
+      <View style={styles.locationInputs}>
+        <TextInput placeholder="Where From?"></TextInput>
+        <TextInput placeholder="Where To?"></TextInput>
+      </View>
     </View>
   );
 };

@@ -1,0 +1,624 @@
+{
+  "rides": [
+    {
+      "depart": {
+        "timeStart": "7:30 am",
+        "timeStartEnd": "7:45 am",
+        "walkTime": "2 min",
+        "date": "November 28",
+        "timeDropOff": "8:45 am",
+        "driveTime": "60min"
+      },
+      "driver": {
+        "displayName": "Kevin Tang",
+        "verified": true,
+        "school": "Universtiy of Waterloo",
+        "hometown": "Toronto",
+        "totalTrips": 74,
+        "profilePic": "https://scontent-yyz1-1.xx.fbcdn.net/v/t1.0-9/p960x960/76717443_3075810075780232_6303347420117860352_o.jpg?_nc_cat=105&_nc_ohc=7lkVRD_Yk3EAQkZEbvO0sfhioP7la2dud_GswJKhMcIAa9rFssvRrhHEw&_nc_ht=scontent-yyz1-1.xx&oh=9f3a7eb410ddbc4c8f380cb90d7f2f9b&oe=5E4D551D"
+      },
+      "carpool": [
+        {
+          "name": "Zaid",
+          "profilePic": "https://scontent-yyz1-1.xx.fbcdn.net/v/t1.0-1/c1.0.320.320a/p320x320/37780512_1871473589557932_3575986278841188352_n.jpg?_nc_cat=105&_nc_ohc=M26W6OBoHFYAQkh40_hvma7bvVwllyEeouB3_Wl6Crs86-WdThVB4_J7g&_nc_ht=scontent-yyz1-1.xx&oh=f9faa29d57c9f1a0be7611dea23f64ca&oe=5E84FDF1"
+        },
+        {
+          "name": "Misha S",
+          "profilePic": "https://scontent.fyyz1-2.fna.fbcdn.net/v/t31.0-1/19400234_1815022342094139_1478530366630733458_o.jpg?_nc_cat=100&_nc_oc=AQmQg8TrcdnyoeSuAwf27oZ1XMnqulEp6FCbB-oxwTKuATvpDGjyKQown3dHLr8KHSVc8zW94vjCL21nqnl75D_-&_nc_ht=scontent.fyyz1-2.fna&oh=739ed491a7305bf4a2f8702cd50f34a8&oe=5E4EDF28"
+        },
+        {
+          "name": "Christinna",
+          "profilePic": "https://scontent-yyz1-1.xx.fbcdn.net/v/t1.0-1/p320x320/74326485_942701422789614_1402751776460898304_n.jpg?_nc_cat=111&_nc_ohc=1EZ5asu56FcAQmAUJY36-mqsf5DD8uBG6yCYO722o7WzcHcnkMB0ZDDiw&_nc_ht=scontent-yyz1-1.xx&oh=747286c3c21aedf04b91986812268f1c&oe=5E3E90D3"
+        },
+
+        {
+          "name": "Kaeli",
+          "profilePic": "https://scontent-yyz1-1.xx.fbcdn.net/v/t1.0-1/p320x320/48172360_1085334661649408_6213929173132509184_o.jpg?_nc_cat=108&_nc_ohc=mwKTC2GUE94AQkT52-6dIrJsssqewwzDiz4ofLSGu35WgYnTuKeLcRO0w&_nc_ht=scontent-yyz1-1.xx&oh=4250d45bbfa5cdab1ae8fc2ffe4bd8fc&oe=5E4DB665"
+        }
+      ],
+      "days": [
+        {
+          "date": "Mon",
+          "value": false
+        },
+        {
+          "date": "Tue",
+          "value": true
+        },
+        {
+          "date": "Wed",
+          "value": false
+        },
+        {
+          "date": "Thu",
+          "value": false
+        },
+        {
+          "date": "Fri",
+          "value": true
+        },
+        {
+          "date": "Sat",
+          "value": true
+        },
+        {
+          "date": "Sun",
+          "value": false
+        }
+      ],
+      "price": {
+        "cost": "$6.00"
+      },
+      "startLocation": {
+        "place": "Waterloo University",
+        "street": "280 University Ave, W",
+        "region": "Waterloo, ON",
+        "maps": {
+          "latitude": 43.4643,
+          "longitude": -80.5204,
+          "latitudeDelta": 0.0922,
+          "longitudeDelta": 0.0421
+        }
+      },
+      "endLocation": {
+        "place": "Stratford School",
+        "street": "125 St Patrick St",
+        "region": "Stratford, ON",
+        "maps": {
+          "latitude": 43.3682,
+          "longitude": -80.9821,
+          "latitudeDelta": 0.0922,
+          "longitudeDelta": 0.0421
+        }
+      }
+    },
+    {
+      "depart": {
+        "timeStart": "1:30 pm",
+        "timeStartEnd": "1:45 pm",
+        "walkTime": "7 min",
+        "date": "November 30",
+        "timeDropOff": "2:00 pm",
+        "driveTime": "15 min"
+      },
+      "driver": {
+        "displayName": "V Shah",
+        "verified": true,
+        "school": "RMIT",
+        "hometown": "Melbourne",
+        "totalTrips": 100,
+        "profilePic": "https://scontent-yyz1-1.xx.fbcdn.net/v/t1.0-1/p320x320/44787614_10217582665667560_8565840027332902912_o.jpg?_nc_cat=110&_nc_ohc=uimkBsWLFSMAQkqhdl0nrpPdT9nfzhwKta4T_mFa4cc6wr0iMaxu1zOtA&_nc_ht=scontent-yyz1-1.xx&oh=6d93f9a674ea596649ff2d572a4dc435&oe=5E4C1635"
+      },
+      "carpool": [
+        {
+          "name": "Celina",
+          "profilePic": "https://scontent-yyz1-1.xx.fbcdn.net/v/t1.0-1/p320x320/55618322_10218413057187861_3366499897518850048_n.jpg?_nc_cat=110&_nc_ohc=6pYcnS3fcXIAQnw5lMaXhGawMU6IrQ6uA0usUSdNp-70nGQqh_uR1bl0A&_nc_ht=scontent-yyz1-1.xx&oh=0bab9ef7c25d9ab81a9dabd6029fcad7&oe=5E82C09B"
+        },
+        {
+          "name": "Ainsley",
+          "profilePic": "https://scontent-yyz1-1.xx.fbcdn.net/v/t1.0-1/p320x320/61153196_2248534108533752_5610677527233167360_n.jpg?_nc_cat=110&_nc_ohc=7AmCSvMl2tMAQkbMCdLhQSN-CKMVntq5S6YPL0nl2KhfvpNeOFpU3YPig&_nc_ht=scontent-yyz1-1.xx&oh=0443b4131d3e390981f8c8d1797984a7&oe=5E7963E1"
+        }
+      ],
+      "days": [
+        {
+          "date": "Mon",
+          "value": false
+        },
+        {
+          "date": "Tue",
+          "value": true
+        },
+        {
+          "date": "Wed",
+          "value": true
+        },
+        {
+          "date": "Thu",
+          "value": false
+        },
+        {
+          "date": "Fri",
+          "value": true
+        },
+        {
+          "date": "Sat",
+          "value": true
+        },
+        {
+          "date": "Sun",
+          "value": false
+        }
+      ],
+      "price": {
+        "cost": "$4.75"
+      },
+      "startLocation": {
+        "place": "RMIT Campus",
+        "street": "449 Swanston St",
+        "region": "Melbourne, Australia",
+        "maps": {
+          "latitude": -37.8079,
+          "longitude": 144.9635,
+          "latitudeDelta": 0.0922,
+          "longitudeDelta": 0.0421
+        }
+      },
+      "endLocation": {
+        "place": "Laundry Bar",
+        "street": "50 Johnston St",
+        "region": "Fitzroy, Australia",
+        "maps": {
+          "latitude": -37.7983,
+          "longitude": 144.9764,
+          "latitudeDelta": 0.0922,
+          "longitudeDelta": 0.0421
+        }
+      }
+    },
+    {
+      "depart": {
+        "timeStart": "5:00 pm",
+        "timeStartEnd": "5:15 pm",
+        "walkTime": "2 min",
+        "date": "December 4",
+        "timeDropOff": "6: 10 pm",
+        "driveTime": "55 min"
+      },
+      "driver": {
+        "displayName": "Selena N",
+        "verified": true,
+        "hometown": "Mississauga",
+        "school": "Ryerson University",
+        "totalTrips": 10,
+        "profilePic": "https://scontent-yyz1-1.xx.fbcdn.net/v/t1.0-1/p320x320/67743134_2368982676518127_437370590064541696_n.jpg?_nc_cat=105&_nc_ohc=auTn2D3elYsAQkX1yUNfHnpLvlcDpdwDRSNc8hi5NO1KEUgeBdKH1QG5w&_nc_ht=scontent-yyz1-1.xx&oh=62f6469fb9287742f0aaef18d4497eb2&oe=5E84DF54"
+      },
+      "carpool": [
+        {
+          "name": "Jessie",
+          "profilePic": "https://scontent-yyz1-1.xx.fbcdn.net/v/t1.0-1/c87.74.847.847a/s320x320/56659841_1512362955566995_4037376177155866624_n.jpg?_nc_cat=106&_nc_ohc=-INUj9FbBxQAQnSo2YQ4jVtKO3KwxpsgXHBT8YyMyYb6klFJtEmw2TmGQ&_nc_ht=scontent-yyz1-1.xx&oh=8b141395ed4e1195de1cde5840099c28&oe=5E46A2B2"
+        },
+        {
+          "name": "Kelsey",
+          "profilePic": "https://scontent-yyz1-1.xx.fbcdn.net/v/t1.0-1/p320x320/52543453_1002496316611093_3999192899987177472_o.jpg?_nc_cat=110&_nc_ohc=wP9hxP_BdVwAQn-PDjttzfFWOiTIhhM9wmfHmz0Z7KXoLmvDjjLSpW9eQ&_nc_ht=scontent-yyz1-1.xx&oh=4f58cb5c97c9fb40755d4685d3a5340e&oe=5E7E2D6E"
+        },
+        {
+          "name": "Emily",
+          "profilePic": "https://scontent-yyz1-1.xx.fbcdn.net/v/t1.0-9/53533220_2777218825628326_329205785789726720_n.jpg?_nc_cat=109&_nc_ohc=dmcpglgsJWIAQlvI2s1kKZ7q17kxbFBgoNotJW9t2pXf2kAhe2Rz7GbGA&_nc_ht=scontent-yyz1-1.xx&oh=53a12ec3b73a557bf4836878e5721aa3&oe=5E43995D"
+        },
+        {
+          "name": "Emily Liu",
+          "profilePic": "https://scontent-yyz1-1.xx.fbcdn.net/v/t1.0-1/p320x320/70888976_10206261421211089_8638977981739433984_n.jpg?_nc_cat=109&_nc_ohc=0DQTDYk8eW0AQkERh8R7HMsMHEN9xTjZaQqf0IOHVr0puMeRI7DQd9tKw&_nc_ht=scontent-yyz1-1.xx&oh=e1ad72db4f55dc5981caa12b136fa4be&oe=5E844382"
+        }
+      ],
+      "days": [
+        {
+          "date": "Mon",
+          "value": false
+        },
+        {
+          "date": "Tue",
+          "value": true
+        },
+        {
+          "date": "Wed",
+          "value": false
+        },
+        {
+          "date": "Thu",
+          "value": false
+        },
+        {
+          "date": "Fri",
+          "value": true
+        },
+        {
+          "date": "Sat",
+          "value": true
+        },
+        {
+          "date": "Sun",
+          "value": false
+        }
+      ],
+      "price": {
+        "cost": "$5.25"
+      },
+      "startLocation": {
+        "place": "Square One",
+        "street": "100 City Centre Dr",
+        "region": "Mississauga, ON",
+        "maps": {
+          "latitude": 43.5931,
+          "longitude": -79.6423,
+          "latitudeDelta": 0.0922,
+          "longitudeDelta": 0.0421
+        }
+      },
+      "endLocation": {
+        "place": "Union Station",
+        "street": "141 Bay St, Toronto",
+        "region": "Toronto, ON",
+        "maps": {
+          "latitude": 43.6453,
+          "longitude": -79.3806,
+          "latitudeDelta": 0.0922,
+          "longitudeDelta": 0.0421
+        }
+      }
+    }
+  ],
+  "available": [
+    {
+      "depart": {
+        "timeStart": "6:30 am",
+        "timeStartEnd": "6:45 am",
+        "walkTime": "8 min",
+        "date": "November 29",
+        "timeDropOff": "10:45 am",
+        "driveTime": "240 min"
+      },
+      "driver": {
+        "displayName": "Alex King",
+        "verified": true,
+        "school": "McMaster University",
+        "hometown": "Hamilton",
+        "totalTrips": 20,
+        "profilePic": "https://mocah.org/uploads/posts/5383606-man-guy-male-black-dark-sunglasses-jacket-denim-thisrt-tee-profile-darkness-looking-away-studio-shot-short-hair-glass-studio-portrait-isolated-closeup-free-stock-photos.jpg"
+      },
+      "carpool": [
+        {
+          "name": "Anon",
+          "profilePic": "https://cdn150.picsart.com/upscale-245339439045212.png?r1024x1024"
+        },
+        {
+          "name": "Anon",
+          "profilePic": "https://cdn150.picsart.com/upscale-245339439045212.png?r1024x1024"
+        },
+        {
+          "name": "Anon",
+          "profilePic": "https://cdn150.picsart.com/upscale-245339439045212.png?r1024x1024"
+        },
+        {
+          "name": "Anon",
+          "profilePic": "https://cdn150.picsart.com/upscale-245339439045212.png?r1024x1024"
+        }
+      ],
+      "days": [
+        {
+          "date": "Mon",
+          "value": true
+        },
+        {
+          "date": "Tue",
+          "value": true
+        },
+        {
+          "date": "Wed",
+          "value": false
+        },
+        {
+          "date": "Thu",
+          "value": false
+        },
+        {
+          "date": "Fri",
+          "value": false
+        },
+        {
+          "date": "Sat",
+          "value": true
+        },
+        {
+          "date": "Sun",
+          "value": false
+        }
+      ],
+      "price": {
+        "cost": "$12.00"
+      },
+      "startLocation": {
+        "place": "Mohwak College",
+        "street": "135 Fennell Ave W",
+        "region": "Hamilton, ON",
+        "maps": {
+          "latitude": 79.8881,
+          "longitude": -79.8881,
+          "latitudeDelta": 0.0922,
+          "longitudeDelta": 0.0421
+        }
+      },
+      "endLocation": {
+        "place": "Queens University",
+        "street": "99 University Ave",
+        "region": "Kingston, ON",
+        "maps": {
+          "latitude": 44.2253,
+          "longitude": -76.4951,
+          "latitudeDelta": 0.0922,
+          "longitudeDelta": 0.0421
+        }
+      }
+    },
+    {
+      "depart": {
+        "timeStart": "8:30 am",
+        "timeStartEnd": "8:45 pm",
+        "walkTime": "7 min",
+        "date": "November 30",
+        "timeDropOff": "11:00 am",
+        "driveTime": "135 min"
+      },
+      "driver": {
+        "displayName": "Mizuho M",
+        "verified": true,
+        "school": "UBC",
+        "hometown": "North Vancouver",
+        "totalTrips": 232,
+        "profilePic": "https://scontent-yyz1-1.xx.fbcdn.net/v/t1.0-1/c201.285.1077.1077a/s320x320/37238871_1843237592381165_8895579814996475904_o.jpg?_nc_cat=109&_nc_ohc=plKh-K1fC2oAQkiEVthd7WEf1qKESzA1sWPYyijBDS9iw3MLCGWTvFjXg&_nc_ht=scontent-yyz1-1.xx&oh=5db0472c1678e317383381d81f4ffaed&oe=5E411F07"
+      },
+      "carpool": [
+        {
+          "name": "Sahar Allen",
+          "profilePic": "https://scontent-yyz1-1.xx.fbcdn.net/v/t1.0-1/p320x320/69285458_955792508097633_6575046694780534784_n.jpg?_nc_cat=108&_nc_ohc=telbmIFT3x0AQmBy09UIdmPh9lcydcY1DHfqh6kq1c3FcmKGpm6R0qkGQ&_nc_ht=scontent-yyz1-1.xx&oh=bb2d4834ef1f6f1cdfb3b4835c803e4c&oe=5E8B954F"
+        }
+      ],
+      "days": [
+        {
+          "date": "Mon",
+          "value": true
+        },
+        {
+          "date": "Tue",
+          "value": true
+        },
+        {
+          "date": "Wed",
+          "value": true
+        },
+        {
+          "date": "Thu",
+          "value": true
+        },
+        {
+          "date": "Fri",
+          "value": true
+        },
+        {
+          "date": "Sat",
+          "value": false
+        },
+        {
+          "date": "Sun",
+          "value": false
+        }
+      ],
+      "price": {
+        "cost": "$14.75"
+      },
+      "startLocation": {
+        "place": "Lonsdale Quay",
+        "street": "123 Carrie Cates Ct",
+        "region": "North Vancouver, BC",
+        "maps": {
+          "latitude": 49.3104,
+          "longitude": -123.0818,
+          "latitudeDelta": 0.0922,
+          "longitudeDelta": 0.0421
+        }
+      },
+      "endLocation": {
+        "place": "UBC",
+        "street": "2329 West Mall",
+        "region": "Vancouver, BC",
+        "maps": {
+          "latitude": 49.2606,
+          "longitude": -123.246,
+          "latitudeDelta": 0.0922,
+          "longitudeDelta": 0.0421
+        }
+      }
+    },
+    {
+      "depart": {
+        "timeStart": "2:35 pm",
+        "timeStartEnd": "2:45 pm",
+        "walkTime": "2 min",
+        "date": "December 4",
+        "timeDropOff": "3:30 pm",
+        "driveTime": "45 min"
+      },
+      "driver": {
+        "displayName": "Jisoo N",
+        "verified": true,
+        "hometown": "Coquitlam",
+        "school": "University of Waterloo",
+        "totalTrips": 53,
+        "profilePic": "https://scontent-yyz1-1.xx.fbcdn.net/v/t1.0-1/p320x320/13336062_10156954076290313_6963650247752136572_n.jpg?_nc_cat=102&_nc_ohc=oyOITE6meB0AQksN1lgOmEMnQJRT7s4CUBGkTusbHHdnAdUm-CwReqX-Q&_nc_ht=scontent-yyz1-1.xx&oh=bbd561e0f216fff6baffd4c3902dc3b3&oe=5E48B7EA"
+      },
+      "carpool": [
+        {
+          "name": "Anon",
+          "profilePic": "https://cdn150.picsart.com/upscale-245339439045212.png?r1024x1024"
+        },
+        {
+          "name": "Anon",
+          "profilePic": "https://cdn150.picsart.com/upscale-245339439045212.png?r1024x1024"
+        },
+        {
+          "name": "Anon",
+          "profilePic": "https://cdn150.picsart.com/upscale-245339439045212.png?r1024x1024"
+        },
+        {
+          "name": "Anon",
+          "profilePic": "https://cdn150.picsart.com/upscale-245339439045212.png?r1024x1024"
+        }
+      ],
+      "days": [
+        {
+          "date": "Mon",
+          "value": false
+        },
+        {
+          "date": "Tue",
+          "value": true
+        },
+        {
+          "date": "Wed",
+          "value": false
+        },
+        {
+          "date": "Thu",
+          "value": false
+        },
+        {
+          "date": "Fri",
+          "value": true
+        },
+        {
+          "date": "Sat",
+          "value": true
+        },
+        {
+          "date": "Sun",
+          "value": false
+        }
+      ],
+      "price": {
+        "cost": "$5.25"
+      },
+      "startLocation": {
+        "place": "Lougheed Center",
+        "street": "9855 Austin Ave",
+        "region": "Burnaby, BC",
+        "maps": {
+          "latitude": 49.2502,
+          "longitude": -122.8958,
+          "latitudeDelta": 0.0922,
+          "longitudeDelta": 0.0421
+        }
+      },
+      "endLocation": {
+        "place": "YVR Airport",
+        "street": "3211 Grant McConachie Way",
+        "region": "Richmond, ON",
+        "maps": {
+          "latitude": 49.1967,
+          "longitude": -123.1815,
+          "latitudeDelta": 0.0922,
+          "longitudeDelta": 0.0421
+        }
+      }
+    },
+    {
+      "depart": {
+        "timeStart": "12:15 pm",
+        "timeStartEnd": "12:25 pm",
+        "walkTime": "5 min",
+        "date": "December 8",
+        "timeDropOff": "1:15 pm",
+        "driveTime": "45 min"
+      },
+      "driver": {
+        "displayName": "Jess J",
+        "verified": true,
+        "hometown": "Richmond",
+        "school": "University of Waterloo",
+        "totalTrips": 155,
+        "profilePic": "https://scontent-yyz1-1.xx.fbcdn.net/v/t1.0-1/p320x320/71516547_10157443750682593_2226471816015118336_n.jpg?_nc_cat=104&_nc_ohc=6MW1EVFsymMAQlAMubJtCzlmkFt1BdCLN8eUB9xP5rleFJ-se1QF-d1UA&_nc_ht=scontent-yyz1-1.xx&oh=658637455396cfa6665c8910ade7afe0&oe=5E85FFC2"
+      },
+      "carpool": [
+        {
+          "name": "Billy H",
+          "profilePic": "https://scontent-yyz1-1.xx.fbcdn.net/v/t1.0-1/p320x320/69022897_2930941943599316_8496097137199677440_o.jpg?_nc_cat=110&_nc_ohc=UX9o3KdyHOwAQl8edG0pH4_8XF7NC74JTHx-2YyXnGjqNfPMwkev1H2kw&_nc_ht=scontent-yyz1-1.xx&oh=5500e17d5448a0a43926ea55ce388c5e&oe=5E80515E"
+        },
+        {
+          "name": "Anon",
+          "profilePic": "https://cdn150.picsart.com/upscale-245339439045212.png?r1024x1024"
+        },
+        {
+          "name": "Anon",
+          "profilePic": "https://cdn150.picsart.com/upscale-245339439045212.png?r1024x1024"
+        },
+        {
+          "name": "Anon",
+          "profilePic": "https://cdn150.picsart.com/upscale-245339439045212.png?r1024x1024"
+        }
+      ],
+      "days": [
+        {
+          "date": "Mon",
+          "value": false
+        },
+        {
+          "date": "Tue",
+          "value": false
+        },
+        {
+          "date": "Wed",
+          "value": false
+        },
+        {
+          "date": "Thu",
+          "value": false
+        },
+        {
+          "date": "Fri",
+          "value": false
+        },
+        {
+          "date": "Sat",
+          "value": true
+        },
+        {
+          "date": "Sun",
+          "value": true
+        }
+      ],
+      "price": {
+        "cost": "$8.25"
+      },
+      "startLocation": {
+        "place": "Finch Station",
+        "street": "5695 Yonge St",
+        "region": "North York, ON",
+        "maps": {
+          "latitude": 43.7814,
+          "longitude": -79.415,
+          "latitudeDelta": 0.0922,
+          "longitudeDelta": 0.0421
+        }
+      },
+      "endLocation": {
+        "place": "WCRI",
+        "street": "268 Phillip St",
+        "region": "Waterloo, ON",
+        "maps": {
+          "latitude": 43.4747,
+          "longitude": -80.5366,
+          "latitudeDelta": 0.0922,
+          "longitudeDelta": 0.0421
+        }
+      }
+    }
+  ]
+}

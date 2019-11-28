@@ -14,7 +14,8 @@ import {
   ScrollView,
   FlingGestureHandler,
   Directions,
-  State
+  State,
+  TouchableHighlight
 } from "react-native-gesture-handler";
 import Svg, { Path } from "react-native-svg";
 import { createStackNavigator, createAppContainer } from "react-navigation";
@@ -22,22 +23,11 @@ import MapView, { Marker } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
 import SearchCard from "./Component/SearchCard.js";
 const GOOGLE_APIKEY = "AIzaSyBENXLjKiK-C2Q1Y0K4uKDB579jkP1-nbg";
-
-let latlngLoo = {
-  latitude: 43.4643,
-  longitude: -80.5204,
-  latitudeDelta: 0.0922,
-  longitudeDelta: 0.0421
-};
-let latlngStrat = {
-  latitude: 43.3682,
-  longitude: -80.9821,
-  latitudeDelta: 0.0922,
-  longitudeDelta: 0.0421
-};
+const uri =
+  "https://scontent.fyyz1-1.fna.fbcdn.net/v/t31.0-8/p960x960/21316104_1817590971602155_8722311024261381719_o.jpg?_nc_cat=101&_nc_oc=AQnJA0X92TvJ9LHSDLiB_4k8w7gbzJq3w1DBUrXDTfypwl-rdCkFqiuMze1G3nPer8654wkXuSlc069jn0eKdIWK&_nc_ht=scontent.fyyz1-1.fna&oh=b4e3e66c488233a4f83eaf106c8e06da&oe=5E8CFC9A";
 
 export default class SearchRideScreen extends Component {
-  state = { input: true, fontLoaded: false };
+  state = { input: true, fontLoaded: false, data: this.props };
 
   async componentDidMount() {
     await Font.loadAsync({
@@ -50,6 +40,12 @@ export default class SearchRideScreen extends Component {
     this.setState({ fontLoaded: true });
   }
   render() {
+    const { navigation } = this.props.navigation.state.params;
+    const {
+      startLocation,
+      endLocation
+    } = this.props.navigation.state.params.data;
+
     return (
       <View style={{ width: "100%", height: "100%" }}>
         <MapView
@@ -58,42 +54,41 @@ export default class SearchRideScreen extends Component {
             this.mapRef = ref;
           }}
           onLayout={() =>
-            this.mapRef.fitToCoordinates([latlngLoo, latlngStrat], {
-              edgePadding: { top: 10, right: 50, bottom: 10, left: 50 },
-              animated: true
-            })
+            this.mapRef.fitToCoordinates(
+              [startLocation.maps, endLocation.maps],
+              {
+                edgePadding: { top: 10, right: 50, bottom: 10, left: 50 },
+                animated: true
+              }
+            )
           }
-          region={{
-            latitude: 43.4643,
-            longitude: -80.5204,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421
-          }}
+          region={startLocation.maps}
         >
           <Marker
-            coordinate={latlngLoo}
+            coordinate={startLocation.maps}
             pinColor="#55d88a"
             anchor={{ x: 0.5, y: 0.5 }}
           ></Marker>
           <Marker
             pinColor="#03aa47"
-            coordinate={latlngStrat}
+            coordinate={endLocation.maps}
             anchor={{ x: 0.5, y: 0.5 }}
           ></Marker>
         </MapView>
 
-        <SearchCard
-          location="Waterloo University"
-          region="Waterloo,ON"
-          street="280 University Ave. W"
-          endLocation="Stratford School"
-          endStreet="125 St Patrick St"
-          endRegion="Stratford, ON"
-          style={{
-            position: "absolute",
-            bottom: 50
+        <TouchableHighlight
+          activeOpacity={0.5}
+          underlayColor="white"
+          onPress={() => {
+            navigation.navigate("SearchDetail", {
+              data: this.props.navigation.state.params.data
+            });
           }}
-        ></SearchCard>
+        >
+          <SearchCard
+            data={this.props.navigation.state.params.data}
+          ></SearchCard>
+        </TouchableHighlight>
       </View>
     );
   }

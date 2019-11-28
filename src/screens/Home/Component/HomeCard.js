@@ -16,6 +16,7 @@ import Svg, { Path } from "react-native-svg";
 
 const RideCard = ({ data }) => {
   const { startLocation, navigation, endLocation, driver, depart } = data;
+
   return (
     <View style={styles.cardContent}>
       <View>
@@ -58,7 +59,7 @@ const RideProfileInfo = ({ driver }) => {
   return (
     <View style={styles.profile}>
       <Image
-        style={{ width: 110, height: 110, borderRadius: 100 }}
+        style={{ width: 100, height: 100, borderRadius: 100 }}
         source={{
           uri: driver.profilePic
         }}
@@ -67,9 +68,9 @@ const RideProfileInfo = ({ driver }) => {
         <Text style={styles.name}>{driver.displayName}</Text>
         <View style={styles.stars}>
           <FlatList
+            keyExtractor={(item, index) => index}
             horizontal
             style={{ marginRight: 4 }}
-            keyExtractor={(item, index) => index}
             data={[
               { value: "star" },
               { value: "star" },
@@ -81,7 +82,7 @@ const RideProfileInfo = ({ driver }) => {
               <FontAwesome
                 name={item.value}
                 size={9.75}
-                color="#b4c083"
+                color="#f3e000"
                 style={{ marginRight: 2 }}
               ></FontAwesome>
             )}
@@ -97,7 +98,7 @@ const RideProfileInfo = ({ driver }) => {
 const SvgComponent = props => (
   <Svg viewBox="0 0 32 156" {...props}>
     <Path
-      fill="#c2c2c2"
+      fill="#f3e000"
       d="M17.3 109.1V28.3c7-.8 12.5-6.7 12.5-14 0-7.8-6.3-14.1-14-14.1s-14 6.3-14 14.1c0 7.2 5.5 13.2 12.5 14v80.8c-8.1.8-14.5 7.6-14.5 16 0 3.6 2.1 9 6.6 17 3.1 5.5 6.1 10.1 6.2 10.3l2.2 3.3c.2.3.6.5 1 .5s.8-.2 1-.5l2.2-3.3c.1-.2 3.1-4.8 6.2-10.3 4.5-8 6.6-13.5 6.6-17 0-8.4-6.4-15.2-14.5-16zM5.8 14.4c0-5.5 4.5-10.1 10-10.1s10 4.5 10 10.1c0 5.5-4.5 10.1-10 10.1s-10-4.6-10-10.1zm10 119.5c-4.9 0-8.9-4-8.9-8.9s4-8.9 8.9-8.9 8.9 4 8.9 8.9-4 8.9-8.9 8.9z"
     />
   </Svg>
@@ -115,11 +116,11 @@ const RideInfo = ({ depart }) => {
         <Ionicons
           name="ios-walk"
           size={30}
-          color="#c2c2c2"
+          color="#ebebeb"
           style={{ marginRight: 6 }}
         ></Ionicons>
         <View>
-          <Text style={styles.subhead}>Walking</Text>
+          <Text style={styles.subhead}>Walking Time</Text>
           <Text style={styles.timeWalk}>{depart.walkTime}</Text>
         </View>
       </View>
@@ -163,38 +164,44 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "flex-end",
     paddingHorizontal: 24,
-
+    backgroundColor: "#56d88a",
     width: "100%",
+    transform: [{ scale: 0.7 }],
+
+    borderRadius: 20,
+    top: 270,
+    elevation: 3,
+    position: "absolute",
     paddingVertical: 30,
-    borderBottomWidth: 0.5,
 
     borderColor: "rgba(0,0,0,0.12)"
   },
   locationText: {
     fontFamily: "gothicBold",
-    fontSize: 16
+    fontSize: 16,
+    color: "white"
   },
   streetText: {
-    color: "#c2c2c2",
+    color: "#ebebeb",
     fontFamily: "gothic"
   },
   subhead: {
     fontFamily: "gothicBold",
-    color: "black",
+    color: "white",
     fontSize: 13
   },
   timeWalk: {
     fontFamily: "gothicBold",
-    color: "#c2c2c2",
+    color: "white",
     fontSize: 15
   },
   walkDepart: {
     fontFamily: "gothicBold",
-    color: "#55d88a",
+    color: "white",
     fontSize: 15
   },
   walkBlock: {
-    borderColor: "#c2c2c2",
+    borderColor: "#ebebeb",
     borderWidth: 1.5,
     flexDirection: "row",
     alignItems: "center",
@@ -203,7 +210,7 @@ const styles = StyleSheet.create({
     marginRight: 8
   },
   departBlock: {
-    borderColor: "#c2c2c2",
+    borderColor: "#ebebeb",
     borderWidth: 1.5,
 
     borderRadius: 8,
@@ -211,7 +218,8 @@ const styles = StyleSheet.create({
   },
   name: {
     fontFamily: "gothicBold",
-    fontSize: 20
+    fontSize: 20,
+    color: "white"
   },
   stars: {
     justifyContent: "flex-start",
@@ -222,11 +230,12 @@ const styles = StyleSheet.create({
     alignItems: "flex-start"
   },
   trips: {
-    fontFamily: "gothicBold"
+    fontFamily: "gothicBold",
+    color: "white"
   },
   verified: {
     fontFamily: "gothicBold",
-    color: "#b4c083",
+    color: "#ebebeb",
     paddingBottom: 0
   },
   header: {
@@ -255,7 +264,7 @@ const styles = StyleSheet.create({
     fontSize: 14
   },
   locationView: {
-    borderColor: "#c2c2c2",
+    borderColor: "#ebebeb",
     borderWidth: 1,
     paddingLeft: 20,
     marginVertical: 18,
