@@ -19,7 +19,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import MapView, { Marker } from "react-native-maps";
 import HomeCard from "./Component/HomeCard.js";
 import RideDetail from "../Search/RideDetail.js";
-const GOOGLE_APIKEY = "AIzaSyBENXLjKiK-C2Q1Y0K4uKDB579jkP1-nbg";
+const GOOGLE_APIKEY;
 import SearchRideScreen from "../Search/SearchRideScreen.js";
 const uri =
   "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
