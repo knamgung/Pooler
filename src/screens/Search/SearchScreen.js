@@ -74,6 +74,7 @@ class SearchScreen extends Component {
           >
             <FlatList
               data={rides}
+              keyExtractor={(item, index) => index}
               renderItem={({ item }) => {
                 return (
                   <TouchableHighlight
